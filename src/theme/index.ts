@@ -22,6 +22,22 @@ export const THEME = extendTheme({
     md: 24,
   },
   components: {
+    Heading: {
+      baseStyle: {
+        fontFamily: "Nunito_600SemiBold",
+      },
+      defaultProps: {
+        fontFamily: "Nunito_600SemiBold",
+      },
+      variants: {
+        h1: {
+          fontSize: 16,
+        },
+        h2: {
+          fontSize: 14,
+        },
+      },
+    },
     Button: {
       baseStyle: {
         borderRadius: 8,

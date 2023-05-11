@@ -3,11 +3,12 @@ import { Button, Icon, Text } from "native-base";
 import { ImageBackground, View, Image } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+import Heading from "@components/Heading";
+
 import Background from "@assets/images/bg.png";
 import WelcomeImg from "@assets/images/welcome.png";
 
 import { styles } from "./styles";
-import Heading from "@components/Heading";
 
 export const WelcomeScreen: React.FC = () => {
   return (
