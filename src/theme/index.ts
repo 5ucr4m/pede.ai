@@ -21,4 +21,21 @@ export const THEME = extendTheme({
   iconSize: {
     md: 24,
   },
+  components: {
+    Button: {
+      baseStyle: {
+        borderRadius: 8,
+      },
+      defaultProps: {},
+      variants: {
+        solid: {
+          bg: "primary",
+          _text: {
+            color: "#fff",
+            fontFamily: "Nunito_700Bold",
+          },
+        },
+      },
+    },
+  },
 });
