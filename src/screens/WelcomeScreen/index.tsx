@@ -9,7 +9,7 @@ import WelcomeImg from "@assets/images/welcome.png";
 import { styles } from "./styles";
 import Heading from "@components/Heading";
 
-export const Welcome: React.FC = () => {
+export const WelcomeScreen: React.FC = () => {
   return (
     <ImageBackground
       source={Background}
@@ -35,3 +35,5 @@ export const Welcome: React.FC = () => {
     </ImageBackground>
   );
 };
+
+export default WelcomeScreen;

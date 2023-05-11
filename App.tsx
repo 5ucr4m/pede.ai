@@ -9,7 +9,7 @@ import {
 } from "@expo-google-fonts/nunito";
 
 import { THEME } from "./src/theme";
-import { Welcome } from "@screens/Welcome";
+import Routes from "@src/routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -25,7 +25,7 @@ export default function App() {
   return (
     <NativeBaseProvider theme={THEME}>
       <StatusBar backgroundColor="transparent" translucent />
-      <Welcome />
+      <Routes />
     </NativeBaseProvider>
   );
 }
