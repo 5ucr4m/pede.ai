@@ -1,13 +1,14 @@
 import React from "react";
-import { useTheme, Heading as NBHeading, IHeadingProps } from "native-base";
+import { Text } from "react-native";
+import { styles } from "./style";
 
-const Heading: React.FC<IHeadingProps> = ({ children }) => {
-  const { fonts, fontSizes } = useTheme();
-  return (
-    <NBHeading fontFamily={fonts.heading} fontSize={fontSizes.md}>
-      {children}
-    </NBHeading>
-  );
+type IProps = {
+  children: React.ReactNode;
+  variant?: keyof typeof styles;
+};
+
+const Heading: React.FC<IProps> = ({ children, variant = "lg" }) => {
+  return <Text style={styles[variant]}>{children}</Text>;
 };
 
 export default Heading;
