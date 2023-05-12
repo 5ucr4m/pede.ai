@@ -10,7 +10,7 @@ const { Navigator, Screen } = createNativeStackNavigator();
 const Routes: React.FC = () => {
   return (
     <NavigationContainer>
-      <Navigator initialRouteName="public">
+      <Navigator initialRouteName="private">
         <Screen
           name="public"
           component={PublicRoutes}

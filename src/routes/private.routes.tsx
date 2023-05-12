@@ -10,6 +10,7 @@ import HomeScreen from "@screens/HomeScreen";
 import ProfileScreen from "@screens/ProfileScreen";
 
 import * as Icons from "./TabBarIcons";
+import { useTheme } from "native-base";
 
 type IPrivateRoutes = {
   cardapio: undefined;
@@ -21,9 +22,10 @@ export type IPrivateRoutesProps = BottomTabNavigationProp<IPrivateRoutes>;
 const { Navigator, Screen } = createBottomTabNavigator<IPrivateRoutes>();
 
 const PrivateRoutes: React.FC = () => {
+  const { colors } = useTheme();
   return (
     <SafeAreaView
-      style={{ flex: 1, height: 300, backgroundColor: "#Ff3333" }}
+      style={{ flex: 1, height: 300, backgroundColor: String(colors.primary) }}
       edges={["bottom"]}
     >
       <Navigator
@@ -31,13 +33,13 @@ const PrivateRoutes: React.FC = () => {
         screenOptions={{
           headerShown: false,
           tabBarStyle: {
-            backgroundColor: "#Ff3333",
+            backgroundColor: String(colors.primary),
             height: Platform.OS === "android" ? 60 : 70,
             paddingVertical: 10,
             paddingBottom: 10,
           },
           tabBarActiveTintColor: "#fff",
-          tabBarInactiveTintColor: "rgba(255, 255, 255, 1)",
+          tabBarInactiveTintColor: "rgba(255, 255, 255, 0.5)",
         }}
       >
         <Screen

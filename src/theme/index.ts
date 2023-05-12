@@ -1,10 +1,15 @@
 import { extendTheme } from "native-base";
 
 export const THEME = extendTheme({
-  colors: {
-    primary: "#Ff3333",
+  brandColors: {
+    primary: "#ff3333",
     textColor: "#333",
     tag: "#00B333",
+    background: "#F1F2F4",
+    menuItemIcon: "#999",
+  },
+  colors: {
+    primary: "#Ff3333",
     background: "#F1F2F4",
   },
   fonts: {

@@ -1,15 +1,17 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { Button } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import Heading from "@components/Heading";
 import { IPublicRoutesProps } from "@src/routes/public.routes";
 
-import { styles } from "./styles";
+import Heading from "@components/Heading";
+import Text from "@components/Text";
 import Input from "@components/Input";
+
+import { styles } from "./styles";
 
 const EmailScreen: React.FC = () => {
   const navigate = useNavigation<IPublicRoutesProps>();
