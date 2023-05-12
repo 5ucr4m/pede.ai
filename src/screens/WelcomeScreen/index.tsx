@@ -9,8 +9,12 @@ import Background from "@assets/images/bg.png";
 import WelcomeImg from "@assets/images/welcome.png";
 
 import { styles } from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import { IPublicRoutesProps } from "@src/routes/public.routes";
 
 export const WelcomeScreen: React.FC = () => {
+  const navigate = useNavigation<IPublicRoutesProps>();
+
   return (
     <ImageBackground
       source={Background}
@@ -27,7 +31,7 @@ export const WelcomeScreen: React.FC = () => {
             leftIcon={
               <Icon as={MaterialCommunityIcons} size={6} name="email-outline" />
             }
-            onPress={() => {}}
+            onPress={() => navigate.push("email")}
           >
             Entrar com e-mail
           </Button>
