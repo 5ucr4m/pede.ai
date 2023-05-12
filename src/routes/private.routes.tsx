@@ -1,14 +1,24 @@
 import React from "react";
-import { Platform, View } from "react-native";
+import { Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-import { AntDesign, Ionicons } from "@expo/vector-icons";
+import {
+  createBottomTabNavigator,
+  BottomTabNavigationProp,
+} from "@react-navigation/bottom-tabs";
 
 import HomeScreen from "@screens/HomeScreen";
 import ProfileScreen from "@screens/ProfileScreen";
 
-const { Navigator, Screen } = createBottomTabNavigator();
+import * as Icons from "./TabBarIcons";
+
+type IPrivateRoutes = {
+  cardapio: undefined;
+  perfil: undefined;
+};
+
+export type IPrivateRoutesProps = BottomTabNavigationProp<IPrivateRoutes>;
+
+const { Navigator, Screen } = createBottomTabNavigator<IPrivateRoutes>();
 
 const PrivateRoutes: React.FC = () => {
   return (
@@ -17,7 +27,7 @@ const PrivateRoutes: React.FC = () => {
       edges={["bottom"]}
     >
       <Navigator
-        initialRouteName="Cardápio"
+        initialRouteName="cardapio"
         screenOptions={{
           headerShown: false,
           tabBarStyle: {
@@ -31,21 +41,19 @@ const PrivateRoutes: React.FC = () => {
         }}
       >
         <Screen
-          name="Cardápio"
+          name="cardapio"
           component={HomeScreen}
           options={{
-            tabBarIcon: ({ color, size }) => (
-              <AntDesign name="isv" size={size} color={color} />
-            ),
+            tabBarIcon: Icons.HomeIcon,
+            tabBarLabel: "Cardápio",
           }}
         />
         <Screen
-          name="Perfil"
+          name="perfil"
           component={ProfileScreen}
           options={{
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="person-outline" size={size} color={color} />
-            ),
+            tabBarIcon: Icons.ProfileIcon,
+            tabBarLabel: "Perfil",
           }}
         />
       </Navigator>

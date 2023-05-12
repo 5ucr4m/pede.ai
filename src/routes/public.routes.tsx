@@ -1,22 +1,34 @@
 import React from "react";
-import { SafeAreaView } from "react-native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
 
 import WelcomeScreen from "@screens/WelcomeScreen";
 import EmailScreen from "@screens/EmailScreen";
+import ConfirmationScreen from "@screens/ConfirmationScreen";
 
-const { Navigator, Screen } = createNativeStackNavigator();
+type IPublicRoutes = {
+  welcome: undefined;
+  email: undefined;
+  confirmation: undefined;
+};
+
+export type IPublicRoutesProps = NativeStackNavigationProp<IPublicRoutes>;
+
+const { Navigator, Screen } = createNativeStackNavigator<IPublicRoutes>();
 
 const PublicRoutes: React.FC = () => {
   return (
     <Navigator
-      initialRouteName="Email"
+      initialRouteName="welcome"
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Screen name="Welcome" component={WelcomeScreen} />
-      <Screen name="Email" component={EmailScreen} />
+      <Screen name="welcome" component={WelcomeScreen} />
+      <Screen name="email" component={EmailScreen} />
+      <Screen name="confirmation" component={ConfirmationScreen} />
     </Navigator>
   );
 };
