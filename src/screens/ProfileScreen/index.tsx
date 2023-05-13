@@ -1,6 +1,7 @@
 import React from "react";
 import { ImageBackground } from "react-native";
 import { Box, Center, Flex, Image, VStack } from "native-base";
+import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
@@ -10,9 +11,12 @@ import MenuItem from "@components/MenuItem";
 import ImageProfileBG from "@assets/images/quadroPerfil.png";
 import ImageProfile from "@assets/images/perfilPadrao.png";
 
+import { IPrivateRoutesProps } from "@src/routes/private.routes";
+
 import { styles } from "./styles";
 
 const ProfileScreen: React.FC = () => {
+  const { navigate } = useNavigation<IPrivateRoutesProps>();
   return (
     <SafeAreaView style={styles.container}>
       <Center>
@@ -42,6 +46,7 @@ const ProfileScreen: React.FC = () => {
           }
         />
         <MenuItem
+          onClick={() => navigate("privacy_policy")}
           name="Política de privacidade"
           icon={
             <MaterialCommunityIcons

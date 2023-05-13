@@ -1,65 +1,56 @@
 import React from "react";
-import { Platform } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Icon } from "native-base";
 import {
-  createBottomTabNavigator,
-  BottomTabNavigationProp,
-} from "@react-navigation/bottom-tabs";
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
 
-import HomeScreen from "@screens/HomeScreen";
-import ProfileScreen from "@screens/ProfileScreen";
+import PrivacyPolicyScreen from "@screens/PrivacyPolicyScreen";
+import TabRoutes from "./tabs.routes";
+import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { MaterialIcons } from "@expo/vector-icons";
 
-import * as Icons from "./TabBarIcons";
-import { useTheme } from "native-base";
-
-type IPrivateRoutes = {
-  cardapio: undefined;
-  perfil: undefined;
+type StackRoutes = {
+  tabs: undefined;
+  privacy_policy: undefined;
 };
 
-export type IPrivateRoutesProps = BottomTabNavigationProp<IPrivateRoutes>;
+export type IPrivateRoutesProps = NativeStackNavigationProp<StackRoutes>;
 
-const { Navigator, Screen } = createBottomTabNavigator<IPrivateRoutes>();
+const Stack = createNativeStackNavigator<StackRoutes>();
 
 const PrivateRoutes: React.FC = () => {
-  const { colors } = useTheme();
+  const navigation = useNavigation<IPrivateRoutesProps>();
+
   return (
-    <SafeAreaView
-      style={{ flex: 1, height: 300, backgroundColor: String(colors.primary) }}
-      edges={["bottom"]}
-    >
-      <Navigator
-        initialRouteName="cardapio"
-        screenOptions={{
-          headerShown: false,
-          tabBarStyle: {
-            backgroundColor: String(colors.primary),
-            height: Platform.OS === "android" ? 60 : 70,
-            paddingVertical: 10,
-            paddingBottom: 10,
-          },
-          tabBarActiveTintColor: "#fff",
-          tabBarInactiveTintColor: "rgba(255, 255, 255, 0.5)",
+    <Stack.Navigator>
+      <Stack.Screen
+        name="tabs"
+        component={TabRoutes}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="privacy_policy"
+        component={PrivacyPolicyScreen}
+        options={{
+          headerTitle: "",
+          headerBackVisible: false,
+          headerBackTitle: "",
+          headerShadowVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Icon
+                as={MaterialIcons}
+                name="arrow-back"
+                size={8}
+                color="primary"
+              />
+            </TouchableOpacity>
+          ),
         }}
-      >
-        <Screen
-          name="cardapio"
-          component={HomeScreen}
-          options={{
-            tabBarIcon: Icons.HomeIcon,
-            tabBarLabel: "Cardápio",
-          }}
-        />
-        <Screen
-          name="perfil"
-          component={ProfileScreen}
-          options={{
-            tabBarIcon: Icons.ProfileIcon,
-            tabBarLabel: "Perfil",
-          }}
-        />
-      </Navigator>
-    </SafeAreaView>
+      />
+    </Stack.Navigator>
   );
 };
 

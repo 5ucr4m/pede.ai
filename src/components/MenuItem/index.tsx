@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, HStack, useTheme, useToken } from "native-base";
+import { Flex, HStack, useToken } from "native-base";
 import { TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -10,12 +10,13 @@ import { styles } from "./styles";
 type IProps = {
   name: string;
   icon?: JSX.Element;
+  onClick?: () => void;
 };
 
-const MenuItem: React.FC<IProps> = ({ icon: Icon, name }) => {
+const MenuItem: React.FC<IProps> = ({ icon: Icon, name, onClick }) => {
   const [menuItemIcon] = useToken("brandColors", ["menuItemIcon"]);
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onClick}>
       <HStack
         space={3}
         justifyContent="center"
