@@ -1,14 +1,24 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, TextProps } from "react-native";
 import { styles } from "./style";
 
-type IProps = {
+type IProps = TextProps & {
   children: React.ReactNode;
   variant?: keyof typeof styles;
+  white?: boolean;
 };
 
-const Heading: React.FC<IProps> = ({ children, variant = "lg" }) => {
-  return <Text style={styles[variant]}>{children}</Text>;
+const Heading: React.FC<IProps> = ({
+  children,
+  variant = "lg",
+  style,
+  ...props
+}) => {
+  return (
+    <Text style={[styles[variant], style]} {...props}>
+      {children}
+    </Text>
+  );
 };
 
 export default Heading;

@@ -1,15 +1,29 @@
 import React from "react";
-import { Text as RNText } from "react-native";
+import { Text as RNText, TextProps } from "react-native";
 
-import { styles } from "./style";
+import { styles, getFontColorStyle } from "./style";
 
-type IProps = {
+type IProps = TextProps & {
   children: React.ReactNode;
   variant?: keyof typeof styles;
+  white?: boolean;
 };
 
-const Text: React.FC<IProps> = ({ children, variant = "md" }) => {
-  return <RNText style={styles[variant]}>{children}</RNText>;
+const Text: React.FC<IProps> = ({
+  children,
+  variant = "md",
+  white,
+  style,
+  ...props
+}) => {
+  return (
+    <RNText
+      style={[styles[variant], getFontColorStyle(white), style]}
+      {...props}
+    >
+      {children}
+    </RNText>
+  );
 };
 
 export default Text;

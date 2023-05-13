@@ -17,8 +17,18 @@ export const styles = StyleSheet.create({
     fontFamily: "Nunito_400Regular",
     fontSize: 16,
   },
-  "2xl": {
+  xxl: {
     fontFamily: "Nunito_400Regular",
-    fontSize: 18,
+    fontSize: 20,
+  },
+  xxxl: {
+    fontFamily: "Nunito_400Regular",
+    fontSize: 24,
   },
 });
+
+export const getFontColorStyle = (white?: boolean) => {
+  return {
+    color: white ? "#fff" : "#333",
+  };
+};
