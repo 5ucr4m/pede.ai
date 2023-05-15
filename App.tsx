@@ -10,6 +10,8 @@ import {
 
 import { THEME } from "./src/theme";
 import Routes from "@src/routes";
+import { Provider } from "react-redux";
+import { store } from "@store/store";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -24,8 +26,10 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-      <StatusBar backgroundColor="transparent" translucent />
-      <Routes />
+      <Provider store={store}>
+        <StatusBar backgroundColor="transparent" translucent />
+        <Routes />
+      </Provider>
     </NativeBaseProvider>
   );
 }

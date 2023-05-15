@@ -11,8 +11,7 @@ import HomeScreen from "@screens/HomeScreen";
 import ProfileScreen from "@screens/ProfileScreen";
 
 import * as Icons from "./TabBarIcons";
-import { View, useTheme } from "native-base";
-import Banner from "@components/Banner";
+import { useTheme } from "native-base";
 
 type IPrivateRoutes = {
   cardapio: undefined;
