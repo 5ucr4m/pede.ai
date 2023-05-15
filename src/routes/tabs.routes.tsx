@@ -1,6 +1,7 @@
 import React from "react";
 import { Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 import {
   createBottomTabNavigator,
   BottomTabNavigationProp,
@@ -10,7 +11,8 @@ import HomeScreen from "@screens/HomeScreen";
 import ProfileScreen from "@screens/ProfileScreen";
 
 import * as Icons from "./TabBarIcons";
-import { useTheme } from "native-base";
+import { View, useTheme } from "native-base";
+import Banner from "@components/Banner";
 
 type IPrivateRoutes = {
   cardapio: undefined;
@@ -23,9 +25,10 @@ const Tab = createBottomTabNavigator<IPrivateRoutes>();
 
 const TabRoutes: React.FC = () => {
   const { colors } = useTheme();
+
   return (
     <SafeAreaView
-      style={{ flex: 1, height: 300, backgroundColor: String(colors.primary) }}
+      style={{ flex: 1, backgroundColor: String(colors.primary) }}
       edges={["bottom"]}
     >
       <Tab.Navigator
