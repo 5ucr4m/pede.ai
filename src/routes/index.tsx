@@ -1,31 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 
 import PrivateRoutes from "./private.routes";
 import PublicRoutes from "./public.routes";
-import { useSelector } from "react-redux";
-import { RootState } from "@store/store";
-import { selectAuthData } from "@store/features/Auth/authSlice";
+import { useAppSelector } from "@src/hooks/hooks";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
 const Routes: React.FC = () => {
-  const { token } = useSelector(selectAuthData);
+  const { isAuthenticated } = useAppSelector((state) => state.auth);
 
   return (
     <NavigationContainer>
-      <Navigator initialRouteName={!token ? "public" : "private"}>
-        <Screen
-          name="public"
-          component={PublicRoutes}
-          options={{ headerShown: false }}
-        />
-        <Screen
-          name="private"
-          component={PrivateRoutes}
-          options={{ headerShown: false }}
-        />
+      <Navigator>
+        {isAuthenticated ? (
+          <Screen
+            name="private"
+            component={PrivateRoutes}
+            options={{ headerShown: false }}
+          />
+        ) : (
+          <Screen
+            name="public"
+            component={PublicRoutes}
+            options={{ headerShown: false }}
+          />
+        )}
       </Navigator>
     </NavigationContainer>
   );

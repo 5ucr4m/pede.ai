@@ -6,7 +6,7 @@ export const ApiUrls = {
   base: config.baseUrl,
 
   // Auth/user
-  login: `${config.baseUrl}/session`,
+  login: `${config.baseUrl}/enviarToken`,
 
   // Store
   store: `${config.baseUrl}/store`,
