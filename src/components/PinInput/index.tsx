@@ -52,7 +52,6 @@ const PinInput: React.FC<IProps> = ({ value, setValue, cellCount }) => {
             key={index}
             style={[styles.cell, isFocused && styles.focusCell]}
             onLayout={getCellOnLayoutHandler(index)}
-            editable={index === 0 ? true : !symbol}
           >
             {symbol || (isFocused ? <Cursor /> : null)}
           </TextInput>
