@@ -66,7 +66,7 @@ const ListItemsWithCategory = forwardRef<SectionList, IProps>(
         ref={ref}
         sections={sections}
         onScroll={handleScroll}
-        style={{ height: Dimensions.get("window").height - 465 }}
+        contentContainerStyle={{ paddingBottom: 300 }}
         ListHeaderComponent={Header}
         keyExtractor={(item) => item.id}
         stickySectionHeadersEnabled={false}
