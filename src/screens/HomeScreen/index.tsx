@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useRef, useState } from "react";
-import { SafeAreaView, SectionList, View } from "react-native";
+import { SafeAreaView, SectionList } from "react-native";
 
 import { foodData } from "./data";
 
@@ -37,17 +37,13 @@ const FoodScreen: React.FC = () => {
 
   return (
     <SafeAreaView>
+      <Banner />
+      <CategoryScroll
+        selectedIndex={currentSection}
+        categories={sectionList}
+        onCategoryPress={handleCategoryPress}
+      />
       <ListItemsWithCategory
-        Header={
-          <>
-            <Banner />
-            <CategoryScroll
-              selectedIndex={currentSection}
-              categories={sectionList}
-              onCategoryPress={handleCategoryPress}
-            />
-          </>
-        }
         setCurrentSection={setCurrentSection}
         ref={sectionListRef}
       />

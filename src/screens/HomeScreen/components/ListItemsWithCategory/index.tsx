@@ -1,5 +1,6 @@
 import React, { forwardRef, memo } from "react";
 import {
+  Dimensions,
   NativeScrollEvent,
   NativeSyntheticEvent,
   SectionList,
@@ -20,7 +21,7 @@ type SectionListType = {
 type IProps = {
   // currentSection: number;
   setCurrentSection: (currentSection: number) => void;
-  Header: JSX.Element;
+  Header?: JSX.Element;
 };
 
 const itemHeight = 180; // Altura do item
@@ -65,6 +66,7 @@ const ListItemsWithCategory = forwardRef<SectionList, IProps>(
         ref={ref}
         sections={sections}
         onScroll={handleScroll}
+        style={{ height: Dimensions.get("window").height - 465 }}
         ListHeaderComponent={Header}
         keyExtractor={(item) => item.id}
         stickySectionHeadersEnabled={false}
