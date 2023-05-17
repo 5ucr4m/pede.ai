@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import { TextInput } from "react-native";
-import { Center } from "native-base";
+import React from "react";
+import { TextInput, Text } from "react-native";
+import { Center, Flex } from "native-base";
 
 import {
   CodeField,
@@ -14,26 +14,20 @@ type IProps = {
   value: string;
   setValue: (value: string) => void;
   cellCount: number;
+  hasError?: boolean;
 };
 
-const PinInput: React.FC<IProps> = ({ value, setValue, cellCount }) => {
+const PinInput: React.FC<IProps> = ({
+  value,
+  setValue,
+  cellCount,
+  hasError,
+}) => {
   const ref = useBlurOnFulfill({ value, cellCount });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
-
-  const inputsRef = useRef<Array<TextInput | null>>([]);
-
-  const addRef = (ref: TextInput, index: number) => {
-    inputsRef.current[index] = ref;
-  };
-
-  useEffect(() => {
-    if (inputsRef.current[0]) {
-      inputsRef.current[0].focus();
-    }
-  }, []);
 
   return (
     <Center justifyContent="center">
@@ -48,15 +42,23 @@ const PinInput: React.FC<IProps> = ({ value, setValue, cellCount }) => {
         textContentType="oneTimeCode"
         renderCell={({ index, symbol, isFocused }) => (
           <TextInput
-            ref={(ref) => addRef(ref!, index)}
             key={index}
-            style={[styles.cell, isFocused && styles.focusCell]}
+            style={[
+              styles.cell,
+              isFocused && styles.focusCell,
+              hasError && styles.hasError,
+            ]}
             onLayout={getCellOnLayoutHandler(index)}
           >
             {symbol || (isFocused ? <Cursor /> : null)}
           </TextInput>
         )}
       />
+      <Flex mt={4}>
+        {hasError ? (
+          <Text style={styles.textError}>Código inválido</Text>
+        ) : null}
+      </Flex>
     </Center>
   );
 };

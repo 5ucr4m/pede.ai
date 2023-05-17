@@ -22,6 +22,12 @@ export const styles = StyleSheet.create({
   focusCell: {
     borderColor: "#000",
   },
+  hasError: {
+    borderColor: "#F33",
+  },
+  textError: {
+    color: "#F33",
+  },
   button: {
     marginTop: 40,
   },
