@@ -16,6 +16,7 @@ module.exports = function(api) {
             '@store': './src/store',
             '@utils': './src/utils',
             '@src': './src',
+            '@validators': './validators',
           }
         }
       ]

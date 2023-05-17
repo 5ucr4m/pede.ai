@@ -21,4 +21,7 @@ export const styles = StyleSheet.create({
   button: {
     marginTop: 40,
   },
+  hasError: {
+    color: "#f33",
+  },
 });

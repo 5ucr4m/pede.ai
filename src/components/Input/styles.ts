@@ -11,4 +11,7 @@ export const styles = StyleSheet.create({
     marginTop: 4,
     marginBottom: 16,
   },
+  hasError: {
+    borderColor: "#f33",
+  },
 });
