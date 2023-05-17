@@ -1,5 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { NativeBaseProvider } from "native-base";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "@store/store";
 
 import {
   useFonts,
@@ -11,7 +13,6 @@ import {
 import { THEME } from "./src/theme";
 import Routes from "@src/routes";
 import { Provider } from "react-redux";
-import { store } from "@store/store";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -27,8 +28,10 @@ export default function App() {
   return (
     <NativeBaseProvider theme={THEME}>
       <Provider store={store}>
-        <StatusBar backgroundColor="transparent" translucent />
-        <Routes />
+        <PersistGate loading={null} persistor={persistor}>
+          <StatusBar backgroundColor="transparent" translucent />
+          <Routes />
+        </PersistGate>
       </Provider>
     </NativeBaseProvider>
   );
