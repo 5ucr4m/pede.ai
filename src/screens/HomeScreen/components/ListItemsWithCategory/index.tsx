@@ -74,7 +74,6 @@ const ListItemsWithCategory = forwardRef<SectionList, IProps>(
           <ListSectionHeader title={title} />
         )}
         renderItem={({ item }: SectionListType) => <FoodItem {...item} />}
-        onScrollToIndexFailed={() => {}}
         windowSize={5}
       />
     );

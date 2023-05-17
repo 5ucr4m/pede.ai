@@ -1,19 +1,19 @@
 import React from "react";
-import { Icon } from "native-base";
 import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
 
-import PrivacyPolicyScreen from "@screens/PrivacyPolicyScreen";
 import TabRoutes from "./tabs.routes";
-import { TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { MaterialIcons } from "@expo/vector-icons";
+
+import PrivacyPolicyScreen from "@screens/PrivacyPolicyScreen";
+import TermsAndCondictionsScreen from "@screens/TermsAndCondictionsScreen";
+import GoBackButtom from "@components/GoBackButton";
 
 type StackRoutes = {
   tabs: undefined;
   privacy_policy: undefined;
+  terms_and_conditions: undefined;
 };
 
 export type IPrivateRoutesProps = NativeStackNavigationProp<StackRoutes>;
@@ -21,8 +21,6 @@ export type IPrivateRoutesProps = NativeStackNavigationProp<StackRoutes>;
 const Stack = createNativeStackNavigator<StackRoutes>();
 
 const PrivateRoutes: React.FC = () => {
-  const navigation = useNavigation<IPrivateRoutesProps>();
-
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -38,16 +36,18 @@ const PrivateRoutes: React.FC = () => {
           headerBackVisible: false,
           headerBackTitle: "",
           headerShadowVisible: false,
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Icon
-                as={MaterialIcons}
-                name="arrow-back"
-                size={8}
-                color="primary"
-              />
-            </TouchableOpacity>
-          ),
+          headerLeft: GoBackButtom,
+        }}
+      />
+      <Stack.Screen
+        name="terms_and_conditions"
+        component={TermsAndCondictionsScreen}
+        options={{
+          headerTitle: "",
+          headerBackVisible: false,
+          headerBackTitle: "",
+          headerShadowVisible: false,
+          headerLeft: GoBackButtom,
         }}
       />
     </Stack.Navigator>

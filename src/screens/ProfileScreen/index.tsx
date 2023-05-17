@@ -14,9 +14,13 @@ import ImageProfile from "@assets/images/perfilPadrao.png";
 import { IPrivateRoutesProps } from "@src/routes/private.routes";
 
 import { styles } from "./styles";
+import { useAppDispatch } from "@src/hooks/hooks";
+import { logout } from "@store/features/Auth/authSlice";
 
 const ProfileScreen: React.FC = () => {
   const { navigate } = useNavigation<IPrivateRoutesProps>();
+  const dispatch = useAppDispatch();
+
   return (
     <SafeAreaView style={styles.container}>
       <Center>
@@ -36,6 +40,7 @@ const ProfileScreen: React.FC = () => {
       </Center>
       <VStack marginTop={30} mx={4}>
         <MenuItem
+          onClick={() => navigate("terms_and_conditions")}
           name="Termos e condições"
           icon={
             <MaterialCommunityIcons
@@ -60,6 +65,7 @@ const ProfileScreen: React.FC = () => {
       <Box height={1} backgroundColor={"background"} minHeight={5} />
       <Flex mx={4} borderBottomWidth={1} borderBottomColor="background">
         <MenuItem
+          onClick={() => dispatch(logout)}
           name="Sair"
           icon={<MaterialIcons name="logout" size={24} color="black" />}
         />
