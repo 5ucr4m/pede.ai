@@ -65,7 +65,7 @@ const ProfileScreen: React.FC = () => {
       <Box height={1} backgroundColor={"background"} minHeight={5} />
       <Flex mx={4} borderBottomWidth={1} borderBottomColor="background">
         <MenuItem
-          onClick={() => dispatch(logout)}
+          onClick={() => dispatch(logout())}
           name="Sair"
           icon={<MaterialIcons name="logout" size={24} color="black" />}
         />
