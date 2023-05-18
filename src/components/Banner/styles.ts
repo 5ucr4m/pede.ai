@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   },
   banner: {
     height: 160,
-    backgroundColor: "#f00",
+    backgroundColor: "#f33",
   },
   profile: {
     height: 110,
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
   profileImageWrapper: {
     width: 80,
     height: 80,
-    backgroundColor: "#f00",
+    backgroundColor: "#f33",
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 2,
@@ -26,6 +26,6 @@ export const styles = StyleSheet.create({
   profileImage: {
     width: 50,
     height: 50,
-    backgroundColor: "#f00",
+    backgroundColor: "#f33",
   },
 });
