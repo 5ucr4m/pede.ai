@@ -8,15 +8,15 @@ import React, {
 import { SafeAreaView, SectionList } from "react-native";
 
 import Banner from "@components/Banner";
-import CategoryScroll from "@screens/HomeScreen/components/CategoryScroll";
+import CategoryScroll from "@screens/ShopScreen/components/CategoryScroll";
 import ListItemsWithCategory from "./components/ListItemsWithCategory";
 import { useAppDispatch, useAppSelector } from "@src/hooks/hooks";
 import { fetchStore, selectStoreItems } from "@store/features/Store/storeSlice";
 
-const FoodScreen: React.FC = () => {
+const ShopScreen: React.FC = () => {
+  const [currentSection, setCurrentSection] = useState(0);
   const dispatch = useAppDispatch();
   const categories = useAppSelector(selectStoreItems);
-  const [currentSection, setCurrentSection] = useState(0);
   const sectionListRef = useRef<SectionList>(null);
 
   useEffect(() => {
@@ -61,4 +61,4 @@ const FoodScreen: React.FC = () => {
   );
 };
 
-export default FoodScreen;
+export default ShopScreen;

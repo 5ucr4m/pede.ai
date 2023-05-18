@@ -5,7 +5,7 @@ import {
   SectionList,
 } from "react-native";
 
-import FoodItem from "@screens/HomeScreen/components/FoodListItem";
+import FoodItem from "@screens/ShopScreen/components/FoodListItem";
 
 import ListSectionHeader from "../ListSectionHeader";
 import { useDebounce } from "@src/hooks/useDebounce";

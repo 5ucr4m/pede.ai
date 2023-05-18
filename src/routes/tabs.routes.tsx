@@ -7,14 +7,14 @@ import {
   BottomTabNavigationProp,
 } from "@react-navigation/bottom-tabs";
 
-import HomeScreen from "@screens/HomeScreen";
+import ShopScreen from "@screens/ShopScreen";
 import ProfileScreen from "@screens/ProfileScreen";
 
 import * as Icons from "./TabBarIcons";
 import { useTheme } from "native-base";
 
 type IPrivateRoutes = {
-  cardapio: undefined;
+  shop: undefined;
   perfil: undefined;
 };
 
@@ -28,10 +28,10 @@ const TabRoutes: React.FC = () => {
   return (
     <SafeAreaView
       style={{ flex: 1, backgroundColor: String(colors.primary) }}
-      edges={["bottom"]}
+      edges={["bottom", "top"]}
     >
       <Tab.Navigator
-        initialRouteName="cardapio"
+        initialRouteName="shop"
         screenOptions={{
           headerShown: false,
           tabBarStyle: {
@@ -45,8 +45,8 @@ const TabRoutes: React.FC = () => {
         }}
       >
         <Tab.Screen
-          name="cardapio"
-          component={HomeScreen}
+          name="shop"
+          component={ShopScreen}
           options={{
             tabBarIcon: Icons.HomeIcon,
             tabBarLabel: "Cardápio",
