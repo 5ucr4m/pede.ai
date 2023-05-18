@@ -14,11 +14,12 @@ import ImageProfile from "@assets/images/perfilPadrao.png";
 import { IPrivateRoutesProps } from "@src/routes/private.routes";
 
 import { styles } from "./styles";
-import { useAppDispatch } from "@src/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@src/hooks/hooks";
 import { logout } from "@store/features/Auth/authSlice";
 
 const ProfileScreen: React.FC = () => {
   const { navigate } = useNavigation<IPrivateRoutesProps>();
+  const { email } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
   return (
@@ -36,7 +37,7 @@ const ProfileScreen: React.FC = () => {
             style={{ width: 80 }}
           />
         </ImageBackground>
-        <Text variant="lg">5ucr4m@gmail.com</Text>
+        <Text variant="lg">{email}</Text>
       </Center>
       <VStack marginTop={30} mx={4}>
         <MenuItem

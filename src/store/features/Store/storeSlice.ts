@@ -1,8 +1,10 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { ApiUrls } from "@config/api";
 import { RootState } from "@store/store";
+
+import { logout } from "../Auth/authSlice";
 
 export interface Items {
   id: string;
@@ -45,17 +47,22 @@ const initialState: StoreSlice = {
 
 export const fetchStore = createAsyncThunk(
   "store/fetchStore",
-  async (_, { getState }) => {
-    const { token, token_date } = (getState() as RootState).auth;
+  async (_, { getState, dispatch }) => {
+    try {
+      const { token, token_date } = (getState() as RootState).auth;
+      const response = await axios.get(ApiUrls.store, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Authorization-token-expiration": token_date,
+        },
+      });
 
-    const response = await axios.get(ApiUrls.store, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Authorization-token-expiration": token_date,
-      },
-    });
-
-    return response.data.data;
+      return response.data.data;
+    } catch (err: AxiosError | any) {
+      if (err.response && err.response.status === 401) {
+        dispatch(logout());
+      }
+    }
   }
 );
 
@@ -69,7 +76,6 @@ const storeSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchStore.fulfilled, (state, action) => {
-        console.log(action);
         state._id = action.payload._id;
         state.name_company = action.payload.name_company;
         state.time_delivery = action.payload.time_delivery;
