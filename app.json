@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "pede.ai",
-    "slug": "pede.ai",
+    "slug": "pede_ai",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,17 +16,22 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.5ucr4m.pede.ai"
+      "bundleIdentifier": "com.sucram.pede.ai"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FF3333"
       },
-      "package": "com.5ucr4m.pede.ai"
+      "package": "com.sucram.pede.ai"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b56ce223-1250-43a0-9f53-262bba5df044"
+      }
     }
   }
 }
