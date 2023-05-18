@@ -7,20 +7,9 @@ import { styles } from "./styles";
 import Text from "@components/Text";
 import Heading from "@components/Heading";
 import Tag from "@components/Tag";
+import { Items } from "@store/features/Store/storeSlice";
 
-export type FoodItemProps = {
-  id: string;
-  title: string;
-  description: string;
-  tag_new: boolean;
-  img: string;
-  size: string;
-  price: number;
-  discount_price: number;
-  tag_discount: boolean;
-};
-
-const FoodListItem: React.FC<FoodItemProps> = ({
+const FoodListItem: React.FC<Items> = ({
   title,
   tag_new,
   tag_discount,

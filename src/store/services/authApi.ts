@@ -21,7 +21,7 @@ export const authApi = createApi({
       query: (email) => ({
         url: "enviarToken",
         method: "POST",
-        body: { email },
+        body: { email: email.toLowerCase() },
       }),
     }),
   }),

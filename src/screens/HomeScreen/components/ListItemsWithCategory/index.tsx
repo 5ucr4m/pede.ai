@@ -1,37 +1,38 @@
-import React, { forwardRef, memo } from "react";
+import React, { forwardRef, memo, useEffect, useState } from "react";
 import {
-  Dimensions,
   NativeScrollEvent,
   NativeSyntheticEvent,
   SectionList,
-  View,
 } from "react-native";
 
-import FoodItem, {
-  FoodItemProps,
-} from "@screens/HomeScreen/components/FoodListItem";
+import FoodItem from "@screens/HomeScreen/components/FoodListItem";
 
-import { foodData } from "../../data";
 import ListSectionHeader from "../ListSectionHeader";
+import { useDebounce } from "@src/hooks/useDebounce";
+import { useAppSelector } from "@src/hooks/hooks";
+import { Items, selectStoreItems } from "@store/features/Store/storeSlice";
 
 type SectionListType = {
-  item: FoodItemProps;
+  item: Items;
 };
 
 type IProps = {
   // currentSection: number;
   setCurrentSection: (currentSection: number) => void;
-  Header?: JSX.Element;
 };
 
 const itemHeight = 180; // Altura do item
 const headerHeight = 40; // Altura do cabeçalho da seção
 
 const ListItemsWithCategory = forwardRef<SectionList, IProps>(
-  ({ setCurrentSection, Header }, ref) => {
-    const sections = foodData.map((item) => {
+  ({ setCurrentSection }, ref) => {
+    const categories = useAppSelector(selectStoreItems);
+    const [index, setIndex] = useState<number>(0);
+    const debouncedIndex = useDebounce<number>(index, 200);
+
+    const sections = categories.map((item) => {
       return {
-        data: item.itens as unknown as FoodItemProps[],
+        data: item.itens as unknown as Items[],
         title: item.name_category,
       };
     });
@@ -58,8 +59,12 @@ const ListItemsWithCategory = forwardRef<SectionList, IProps>(
         currentSectionIndex++;
       }
 
-      setCurrentSection(currentSectionIndex);
+      setIndex(currentSectionIndex);
     };
+
+    useEffect(() => {
+      setCurrentSection(debouncedIndex);
+    }, [debouncedIndex]);
 
     return (
       <SectionList
@@ -67,14 +72,12 @@ const ListItemsWithCategory = forwardRef<SectionList, IProps>(
         sections={sections}
         onScroll={handleScroll}
         contentContainerStyle={{ paddingBottom: 300 }}
-        ListHeaderComponent={Header}
         keyExtractor={(item) => item.id}
         stickySectionHeadersEnabled={false}
         renderSectionHeader={({ section: { title } }) => (
           <ListSectionHeader title={title} />
         )}
         renderItem={({ item }: SectionListType) => <FoodItem {...item} />}
-        windowSize={5}
       />
     );
   }

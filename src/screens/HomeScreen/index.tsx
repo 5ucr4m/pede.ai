@@ -1,27 +1,37 @@
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { SafeAreaView, SectionList } from "react-native";
 
-import { foodData } from "./data";
-
-import CategoryScroll from "@screens/HomeScreen/components/CategoryScroll";
-
-import ListItemsWithCategory from "./components/ListItemsWithCategory";
 import Banner from "@components/Banner";
+import CategoryScroll from "@screens/HomeScreen/components/CategoryScroll";
+import ListItemsWithCategory from "./components/ListItemsWithCategory";
+import { useAppDispatch, useAppSelector } from "@src/hooks/hooks";
+import { fetchStore, selectStoreItems } from "@store/features/Store/storeSlice";
 
 const FoodScreen: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const categories = useAppSelector(selectStoreItems);
   const [currentSection, setCurrentSection] = useState(0);
   const sectionListRef = useRef<SectionList>(null);
 
+  useEffect(() => {
+    dispatch(fetchStore());
+  }, []);
+
   const handleCategoryPress = useCallback(
     (category: string) => {
-      const index = foodData.findIndex(
+      const index = categories.findIndex(
         (item) => item.name_category === category
       );
 
       sectionListRef.current?.scrollToLocation({
         sectionIndex: index,
         itemIndex: 1,
-        animated: true,
       });
     },
     [sectionListRef.current]
@@ -29,10 +39,10 @@ const FoodScreen: React.FC = () => {
 
   const sectionList = useMemo(
     () =>
-      foodData.map((item) => {
+      categories.map((item) => {
         return item.name_category;
       }),
-    []
+    [categories]
   );
 
   return (
